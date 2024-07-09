@@ -159,23 +159,23 @@ const ConnectWebSocket = () => {
       console.error('Failed to parse JSON:', error);
       websocketData.value = e.data; // 如果解析失败，直接赋值原始数据
     }
-    };
     console.log('from server: ' + e.data);
   };
   ws.onclose = function(event) {
-  if (event.wasClean) {
-    alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-  } else {
-    // 例如服务器进程被杀死或网络中断
-    // 在这种情况下，event.code 通常为 1006
-    alert('[close] Connection died');
-  }
+    if (event.wasClean) {
+      alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
+    } else {
+      // 例如服务器进程被杀死或网络中断
+      // 在这种情况下，event.code 通常为 1006
+      alert('[close] Connection died');
+    }
   };
   ws.onerror = function(error) {
     alert(`[error] ${error.message}`);
-  };
-  
+  }
 };
+  
+
 const DisconnectWebSocket = () => {
   if (ws) {
     websocketData.value = '连接已断开';
